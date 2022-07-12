@@ -2,6 +2,12 @@ package net.javaguides.springboot.exception;
 
 import java.util.Date;
 
+/*
+ * TODO CR
+ *  @AllArgsConstructor
+ *  @Getter
+ *  these two could have reduced a lot of code for you, hence the class and test coverage requirements would also reduce
+ */
 public class ErrorDetails {
     private Date timestamp;
     private String message;

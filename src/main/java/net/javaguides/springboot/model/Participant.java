@@ -12,6 +12,7 @@ public class Participant {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
    @Column(name = "first_name")
+   //TODO CR: Prefer camel case
    private String first_name;
    @Column(name = "last_name")
    private String last_name;
@@ -28,6 +29,9 @@ public class Participant {
         this.email_id = emailid;
     }
 
+    // TODO CR: This can be removed by @Getter annotation over class, keep target of less code, more capabilities
+    // And remove as much boilerplate as you can
+    // https://projectlombok.org/features/GetterSetter
     public long getId() {
         return id;
     }

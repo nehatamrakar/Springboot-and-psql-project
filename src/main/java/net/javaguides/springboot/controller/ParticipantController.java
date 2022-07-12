@@ -18,8 +18,11 @@ import java.util.Map;
 @RequestMapping("/api/v1/")
 public class ParticipantController {
 
+    /*
+     * Have you tested this?
+     */
     @Autowired
-    private ParticipantRepository participantRepository;
+    private ParticipantRepository participantRepository; // can you make this final?
 
     //get participants
     @GetMapping("participants")
@@ -28,7 +31,7 @@ public class ParticipantController {
     }
 
     //get participant by id
-    @GetMapping("/participants/{id}")
+    @GetMapping("/participants/{id}") //TODO CR: there are different conventions followed in line 28, line 34, kindly stick to one
     public ResponseEntity<Participant> getParticipantId(@PathVariable(value = "id") Long participantId)
             throws ResourceNotFoundException {
         Participant participant= participantRepository.findById(participantId)
@@ -56,6 +59,10 @@ public class ParticipantController {
     }
 
     //delete participant
+    /*
+     * TODO CR: Try not to return primitive datastructures as in case you have to modify the return type then it would
+     *  be a major contract change
+     */
     @DeleteMapping("participants/{id}")
     public Map<String, Boolean> deleteParticipant(@PathVariable(value = "id") Long participantId) throws ResourceNotFoundException{
         Participant participant= participantRepository.findById(participantId)
@@ -64,6 +71,7 @@ public class ParticipantController {
         this.participantRepository.delete(participant);
 
         Map<String,Boolean> response = new HashMap<>();
+        // TODO CR Use only constants no hardcoding
         response.put("deleted", Boolean.TRUE);
 
         return response;
